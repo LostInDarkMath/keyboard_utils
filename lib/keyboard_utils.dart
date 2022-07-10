@@ -20,7 +20,7 @@ class KeyboardUtils {
 
   static int _count = 0;
 
-  static Map<int, KeyboardListener> _listenersKeyboardEvents = Map<int, KeyboardListener>();
+  static final Map<int, KeyboardListener> _listenersKeyboardEvents = <int, KeyboardListener>{};
 
   static KeyboardOptions? _keyboardOptions;
 
@@ -43,7 +43,7 @@ class KeyboardUtils {
   KeyboardOptions? _decodeDataToKeyboardOptions({required Object? data}) {
     if (data != null && data is String) {
       try {
-        final Map<String, dynamic> keyboardOptionsMap = jsonDecode(data);
+        final keyboardOptionsMap = jsonDecode(data) as Map<String, dynamic>;
         return KeyboardOptions.fromJson(keyboardOptionsMap);
       } catch (_) {
         return null;
@@ -124,7 +124,7 @@ class KeyboardUtils {
   ///  function to clear class on dispose.
   void dispose() {
     if (canCallDispose()) {
-      _keyboardSubscription?.cancel().catchError((e) {});
+      _keyboardSubscription?.cancel().catchError((dynamic e) {});
       _keyboardSubscription = null;
     }
   }

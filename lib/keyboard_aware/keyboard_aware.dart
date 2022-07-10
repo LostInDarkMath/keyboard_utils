@@ -4,7 +4,7 @@ import 'package:keyboard_utils/keyboard_options.dart';
 import 'package:keyboard_utils/keyboard_utils.dart';
 
 class KeyboardAware extends StatefulWidget {
-  const KeyboardAware({required this.builder});
+  const KeyboardAware({required this.builder, Key? key}) : super(key: key);
 
   final Widget Function(
       BuildContext context, KeyboardOptions configuracaoTeclado) builder;
@@ -52,8 +52,8 @@ class _KeyboardAwareState extends State<KeyboardAware> {
     return widget.builder(
       context,
       KeyboardOptions(
-          keyboardHeight: _keyboardUtils.keyboardHeight,
-          isKeyboardOpen: _keyboardUtils.isKeyboardOpen),
+        keyboardHeight: _keyboardUtils.keyboardHeight,
+        isKeyboardOpen: _keyboardUtils.isKeyboardOpen),
     );
   }
 }

@@ -32,7 +32,7 @@ class DeviceDimesionsImpl(
         val phisicalNavigationButton = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             getNavigationBarHeight()
         } else {
-            0
+            0 // lower than Android 4.2
         }
 
         return (realHeight - keyboardRect.bottom) - phisicalNavigationButton

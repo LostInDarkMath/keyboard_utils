@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:keyboard_utils/keyboard_listener.dart';
@@ -110,7 +108,7 @@ void main() {
 
   test('willShowKeyboard', () async {
     final fakeKeyboardListener = KeyboardListenerSpy();
-    final jsonTest = '{ "isKeyboardOpen": true, "keyboardHeight": 200}';
+    const jsonTest = '{ "isKeyboardOpen": true, "keyboardHeight": 200}';
 
     keyboardUtils.add(listener: fakeKeyboardListener);
 
@@ -125,7 +123,7 @@ void main() {
 
   test('willHideKeyboard', () async {
     final fakeKeyboardListener = KeyboardListenerSpy();
-    final jsonTest = '{ "isKeyboardOpen": false, "keyboardHeight": 0.0}';
+    const jsonTest = '{ "isKeyboardOpen": false, "keyboardHeight": 0.0}';
 
     keyboardUtils.add(listener: fakeKeyboardListener);
 
@@ -177,7 +175,7 @@ class EventsChannelSpy {
   }
 
   Future<void> _sendMessage(ByteData data) {
-    return ServicesBinding.instance!.defaultBinaryMessenger
+    return ServicesBinding.instance.defaultBinaryMessenger
         .handlePlatformMessage(
             eventsMethodChannel.name, data, (ByteData? data) {});
   }

@@ -1,4 +1,4 @@
-/// The responsability this class is to handle the subscribing events.
+/// The responsibility this class is to handle the subscribing events.
 class KeyboardListener {
   /// Constructs a new [KeyboardListener]
   KeyboardListener({this.willShowKeyboard, this.willHideKeyboard});

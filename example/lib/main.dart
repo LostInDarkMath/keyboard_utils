@@ -103,10 +103,28 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title: const Text('Keyboard Utils Sample'),
         ),
-        body: buildSampleUsingKeyboardAwareWidget(),
+        body: Column(
+          children: [
+            Expanded(
+              child: buildSampleUsingKeyboardAwareWidget(),
+            ),
+            Container(
+              height: 10.0,
+              color: Colors.green,
+            ),
+            Offstage(
+              offstage: !_bloc.keyboardUtils.isKeyboardOpen,
+              child: SizedBox(
+                height: _bloc.keyboardUtils.keyboardHeight,
+                child: Container(color: Colors.red),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
