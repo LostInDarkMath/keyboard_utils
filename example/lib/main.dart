@@ -21,8 +21,12 @@ class KeyboardBloc {
   void start() {
     _idKeyboardListener = _keyboardUtils.add(
         listener: keyboard_listener.KeyboardListener(willHideKeyboard: () {
+      print('willHideKeyboard: ${_keyboardUtils.keyboardHeight}');
       _streamController.sink.add(_keyboardUtils.keyboardHeight);
     }, willShowKeyboard: (double keyboardHeight) {
+      print('willShowKeyboard: $keyboardHeight');
+      print('ratio: ${WidgetsBinding.instance.window.devicePixelRatio}');
+      print('view padding: ${WidgetsBinding.instance.window.viewPadding}');
       _streamController.sink.add(keyboardHeight);
     }));
   }
@@ -103,24 +107,32 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        resizeToAvoidBottomInset: true,
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: const Text('Keyboard Utils Sample'),
         ),
         body: Column(
           children: [
             Expanded(
-              child: buildSampleUsingKeyboardAwareWidget(),
+              child: Column(
+                children: [
+                  buildSampleUsingKeyboardAwareWidget(),
+                  Expanded(child: Container()),
+                  Container(
+                    height: 10.0,
+                    color: Colors.green,
+                  ),
+                ],
+              ),
             ),
-            Container(
-              height: 10.0,
-              color: Colors.green,
-            ),
-            Offstage(
-              offstage: !_bloc.keyboardUtils.isKeyboardOpen,
-              child: SizedBox(
-                height: _bloc.keyboardUtils.keyboardHeight,
-                child: Container(color: Colors.red),
+            StreamBuilder<double>(
+              stream: _bloc.stream,
+              builder: (context, snapshot) => Offstage(
+                offstage: !_bloc.keyboardUtils.isKeyboardOpen,
+                child: SizedBox(
+                  height: _bloc.keyboardUtils.keyboardHeight + 30, // TODO where does this offset came from?
+                  child: Container(color: Colors.red),
+                ),
               ),
             ),
           ],
