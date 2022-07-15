@@ -35,7 +35,7 @@ class DeviceDimesionsImpl(
             0
         }
 
-        return (realHeight - keyboardRect.bottom) - phisicalNavigationButton
+        return (realHeight - keyboardRect.bottom)  //- phisicalNavigationButton
     }
 
     override fun getRealDeviceHeight(): Int {
