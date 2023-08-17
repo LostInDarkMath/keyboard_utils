@@ -1,1 +1,5 @@
+<<<<<<< Updated upstream
 {"_info":"// This is a generated file; do not edit or check into version control.","dependencyGraph":[{"name":"keyboard_utils","dependencies":[]}]}
+=======
+{"info":"This is a generated file; do not edit or check into version control.","plugins":{"ios":[{"name":"keyboard_utils","path":"/home/willi/Documents/Repos/arduino/keyboard_utils/","native_build":true,"dependencies":[]}],"android":[{"name":"keyboard_utils","path":"/home/willi/Documents/Repos/arduino/keyboard_utils/","native_build":true,"dependencies":[]}],"macos":[],"linux":[],"windows":[],"web":[]},"dependencyGraph":[{"name":"keyboard_utils","dependencies":[]}],"date_created":"2023-08-17 13:49:43.048795","version":"3.13.0"}
+>>>>>>> Stashed changes

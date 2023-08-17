@@ -6,23 +6,32 @@ import 'package:keyboard_utils/keyboard_utils.dart';
 import 'package:keyboard_utils/keyboard_listener.dart' as keyboard_listener;
 import 'package:keyboard_utils/widgets.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 // Sample Bloc
 class KeyboardBloc {
-  KeyboardUtils _keyboardUtils = KeyboardUtils();
-  StreamController<double> _streamController = StreamController<double>();
+  final _keyboardUtils = KeyboardUtils();
+  final _streamController = StreamController<double>();
   Stream<double> get stream => _streamController.stream;
 
   KeyboardUtils get keyboardUtils => _keyboardUtils;
 
-  int _idKeyboardListener;
+  int _idKeyboardListener = 0;
 
   void start() {
     _idKeyboardListener = _keyboardUtils.add(
         listener: keyboard_listener.KeyboardListener(willHideKeyboard: () {
+<<<<<<< Updated upstream
       _streamController.sink.add(_keyboardUtils.keyboardHeight);
     }, willShowKeyboard: (double keyboardHeight) {
+=======
+      debugPrint('willHideKeyboard: ${_keyboardUtils.keyboardHeight}');
+      _streamController.sink.add(_keyboardUtils.keyboardHeight);
+    }, willShowKeyboard: (double keyboardHeight) {
+          debugPrint('willShowKeyboard: $keyboardHeight');
+          debugPrint('ratio: ${WidgetsBinding.instance.window.devicePixelRatio}');
+          debugPrint('view padding: ${WidgetsBinding.instance.window.viewPadding}');
+>>>>>>> Stashed changes
       _streamController.sink.add(keyboardHeight);
     }));
   }
@@ -38,12 +47,14 @@ class KeyboardBloc {
 
 // App
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
-  _MyAppState createState() => _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  KeyboardBloc _bloc = KeyboardBloc();
+  final _bloc = KeyboardBloc();
 
   @override
   void initState() {
@@ -56,12 +67,12 @@ class _MyAppState extends State<MyApp> {
     return Center(
       child: Column(
         children: <Widget>[
-          TextField(),
-          TextField(
+          const TextField(),
+          const TextField(
             keyboardType: TextInputType.number,
           ),
-          TextField(),
-          SizedBox(
+          const TextField(),
+          const SizedBox(
             height: 30,
           ),
           KeyboardAware(
@@ -79,12 +90,12 @@ class _MyAppState extends State<MyApp> {
     return Center(
       child: Column(
         children: <Widget>[
-          TextField(),
-          TextField(
+          const TextField(),
+          const TextField(
             keyboardType: TextInputType.number,
           ),
-          TextField(),
-          SizedBox(
+          const TextField(),
+          const SizedBox(
             height: 30,
           ),
           StreamBuilder<double>(

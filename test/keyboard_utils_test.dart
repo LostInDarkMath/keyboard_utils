@@ -153,7 +153,7 @@ class KeyboardListenerSpy extends KeyboardListener {
       };
 
   @override
-  Function(double p1) get willShowKeyboard => (keyboardHeight) {
+  void Function(double p1) get willShowKeyboard => (keyboardHeight) {
         willShowKeyboardCalled = true;
         keyboardHeightPassed = keyboardHeight;
       };
